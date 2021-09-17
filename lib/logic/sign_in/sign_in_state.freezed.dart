@@ -20,6 +20,7 @@ class _$SignInPageStateTearOff {
   _SignInPageState call(
       {required String email,
       required String password,
+      required GlobalKey<FormState> formKey,
       required bool loading,
       required bool showPassword,
       required bool showErrors,
@@ -27,6 +28,7 @@ class _$SignInPageStateTearOff {
     return _SignInPageState(
       email: email,
       password: password,
+      formKey: formKey,
       loading: loading,
       showPassword: showPassword,
       showErrors: showErrors,
@@ -42,6 +44,7 @@ const $SignInPageState = _$SignInPageStateTearOff();
 mixin _$SignInPageState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
   bool get showErrors => throw _privateConstructorUsedError;
@@ -61,6 +64,7 @@ abstract class $SignInPageStateCopyWith<$Res> {
   $Res call(
       {String email,
       String password,
+      GlobalKey<FormState> formKey,
       bool loading,
       bool showPassword,
       bool showErrors,
@@ -80,6 +84,7 @@ class _$SignInPageStateCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
+    Object? formKey = freezed,
     Object? loading = freezed,
     Object? showPassword = freezed,
     Object? showErrors = freezed,
@@ -94,6 +99,10 @@ class _$SignInPageStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      formKey: formKey == freezed
+          ? _value.formKey
+          : formKey // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -124,6 +133,7 @@ abstract class _$SignInPageStateCopyWith<$Res>
   $Res call(
       {String email,
       String password,
+      GlobalKey<FormState> formKey,
       bool loading,
       bool showPassword,
       bool showErrors,
@@ -145,6 +155,7 @@ class __$SignInPageStateCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
+    Object? formKey = freezed,
     Object? loading = freezed,
     Object? showPassword = freezed,
     Object? showErrors = freezed,
@@ -159,6 +170,10 @@ class __$SignInPageStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      formKey: formKey == freezed
+          ? _value.formKey
+          : formKey // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -185,6 +200,7 @@ class _$_SignInPageState implements _SignInPageState {
   const _$_SignInPageState(
       {required this.email,
       required this.password,
+      required this.formKey,
       required this.loading,
       required this.showPassword,
       required this.showErrors,
@@ -194,6 +210,8 @@ class _$_SignInPageState implements _SignInPageState {
   final String email;
   @override
   final String password;
+  @override
+  final GlobalKey<FormState> formKey;
   @override
   final bool loading;
   @override
@@ -205,7 +223,7 @@ class _$_SignInPageState implements _SignInPageState {
 
   @override
   String toString() {
-    return 'SignInPageState(email: $email, password: $password, loading: $loading, showPassword: $showPassword, showErrors: $showErrors, authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'SignInPageState(email: $email, password: $password, formKey: $formKey, loading: $loading, showPassword: $showPassword, showErrors: $showErrors, authFailureOrSuccess: $authFailureOrSuccess)';
   }
 
   @override
@@ -217,6 +235,9 @@ class _$_SignInPageState implements _SignInPageState {
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
+            (identical(other.formKey, formKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.formKey, formKey)) &&
             (identical(other.loading, loading) ||
                 const DeepCollectionEquality()
                     .equals(other.loading, loading)) &&
@@ -236,6 +257,7 @@ class _$_SignInPageState implements _SignInPageState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(formKey) ^
       const DeepCollectionEquality().hash(loading) ^
       const DeepCollectionEquality().hash(showPassword) ^
       const DeepCollectionEquality().hash(showErrors) ^
@@ -251,6 +273,7 @@ abstract class _SignInPageState implements SignInPageState {
   const factory _SignInPageState(
           {required String email,
           required String password,
+          required GlobalKey<FormState> formKey,
           required bool loading,
           required bool showPassword,
           required bool showErrors,
@@ -261,6 +284,8 @@ abstract class _SignInPageState implements SignInPageState {
   String get email => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
+  @override
+  GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
   @override
   bool get loading => throw _privateConstructorUsedError;
   @override
