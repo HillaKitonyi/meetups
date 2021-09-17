@@ -1,8 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/domain/auth/auth_failure.dart';
+
+final appUserStreamProvider = StreamProvider<Option<AppUser>>((_) {
+  return FireAuthService.instance.appUserStream();
+}, name: 'appUserStreamProvider');
 
 class FireAuthService {
   final FirebaseAuth _auth;
