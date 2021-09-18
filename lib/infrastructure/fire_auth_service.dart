@@ -5,6 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/domain/auth/auth_failure.dart';
 
+final appUserProvider = Provider<AppUser>((_) => throw UnimplementedError());
+
 final appUserStreamProvider = StreamProvider<Option<AppUser>>((_) {
   return FireAuthService.instance.appUserStream();
 }, name: 'appUserStreamProvider');

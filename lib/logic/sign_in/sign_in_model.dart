@@ -29,7 +29,7 @@ class SignInModel extends StateNotifier<SignInPageState> {
   Future<void> loginButtonPressed() async {
     Either<AuthFailure, Unit>? possibleFailure;
     final emailIsValid = validateEmail(state.email).isRight();
-    final passwordIsValid = validateEmail(state.password).isRight();
+    final passwordIsValid = validatePassword(state.password).isRight();
     if (emailIsValid && passwordIsValid) {
       state = state.copyWith(loading: true, authFailureOrSuccess: null);
       possibleFailure = await authService.signInWithEmailAndPassword(state.email, state.password);
@@ -41,7 +41,7 @@ class SignInModel extends StateNotifier<SignInPageState> {
   Future<void> registerButtonPressed() async {
     Either<AuthFailure, Unit>? possibleFailure;
     final emailIsValid = validateEmail(state.email).isRight();
-    final passwordIsValid = validateEmail(state.password).isRight();
+    final passwordIsValid = validatePassword(state.password).isRight();
     if (emailIsValid && passwordIsValid) {
       state = state.copyWith(loading: true, authFailureOrSuccess: null);
       possibleFailure = await authService.registerWithEmailAndPassword(state.email, state.password);

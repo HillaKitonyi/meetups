@@ -19,7 +19,7 @@ class _$AppUserTearOff {
 
   _AppUser call(
       {required String uid,
-      String? email = 'youremail@example.com',
+      required String? email,
       required String? username,
       required String? photoURL}) {
     return _AppUser(
@@ -138,13 +138,12 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
 class _$_AppUser implements _AppUser {
   const _$_AppUser(
       {required this.uid,
-      this.email = 'youremail@example.com',
+      required this.email,
       required this.username,
       required this.photoURL});
 
   @override
   final String uid;
-  @JsonKey(defaultValue: 'youremail@example.com')
   @override
   final String? email;
   @override
@@ -190,7 +189,7 @@ class _$_AppUser implements _AppUser {
 abstract class _AppUser implements AppUser {
   const factory _AppUser(
       {required String uid,
-      String? email,
+      required String? email,
       required String? username,
       required String? photoURL}) = _$_AppUser;
 

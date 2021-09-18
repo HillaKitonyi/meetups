@@ -17,7 +17,17 @@ class SignInPage extends ConsumerWidget {
         (_) {},
       );
     });
-    return const SignInForm();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'SIGN IN / SIGN UP',
+          style: TextStyle(letterSpacing: 1, color: Colors.black45),
+        ),
+      ),
+      body: const SignInForm(),
+    );
   }
 
   void _showErrorSnackbar(BuildContext context, String message) {

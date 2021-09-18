@@ -15,6 +15,7 @@ class SignInForm extends ConsumerWidget {
     final bool loading = ref.watch(signInModelProvider.select((state) => state.loading));
 
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Form(
         autovalidateMode: showErrors ? AutovalidateMode.always : AutovalidateMode.disabled,
         child: ListView(

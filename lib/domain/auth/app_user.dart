@@ -7,7 +7,7 @@ part 'app_user.freezed.dart';
 abstract class AppUser with _$AppUser {
   const factory AppUser({
     required String uid,
-    @Default('youremail@example.com') String? email,
+    required String? email,
     required String? username,
     required String? photoURL,
   }) = _AppUser;
@@ -15,8 +15,8 @@ abstract class AppUser with _$AppUser {
   factory AppUser.fromFirebaseUser(User user) {
     return AppUser(
       uid: user.uid,
-      email: user.email,
-      username: user.displayName,
+      email: user.email ?? 'youremail@example.com',
+      username: user.displayName ?? 'username',
       photoURL: user.photoURL,
     );
   }
