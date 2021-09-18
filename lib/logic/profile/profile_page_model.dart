@@ -63,7 +63,7 @@ class ProfilePageModel extends StateNotifier<ProfilePageState> {
 
   void onCancelPressed(BuildContext context) {
     state = ProfilePageState.initial(appUser);
-    Navigator.pop(context);
+    Navigator.maybePop(context);
   }
 
   Future<void> onSubmitPressed() async {
