@@ -4,59 +4,39 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/infrastructure/fire_auth_service.dart';
 import 'package:meetups/logic/home/home_page_model.dart';
+import 'package:meetups/logic/navigation/nav_model.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'drawer_navigation_item.dart';
 
-class HomeNavigationBuilder extends StatefulWidget {
-  final Widget Function(
-    BuildContext context,
-    DrawerItem drawerItem,
-    Future<bool> Function() onBackPressed,
-  ) builder;
+class HomeNavigationBuilder extends ConsumerWidget {
+  final Widget Function(BuildContext context, DrawerItem drawerItem) builder;
   const HomeNavigationBuilder({Key? key, required this.builder}) : super(key: key);
 
   static Widget create(AppUser appUser) {
     return ProviderScope(
       overrides: [appUserProvider.overrideWithValue(appUser)],
-      child: HomeNavigationBuilder(builder: (context, drawerItem, onBackPressed) {
-        return WillPopScope(
-          child: drawerItem.buildPage(onBackPressed),
-          onWillPop: onBackPressed,
-        );
+      child: HomeNavigationBuilder(builder: (context, drawerItem) {
+        return drawerItem.buildPage();
       }),
     );
   }
 
   @override
-  _HomeNavigationBuilder2State createState() => _HomeNavigationBuilder2State();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final navState = ref.watch(navModelProvider);
+    final modelNotifier = ref.read(navModelProvider.notifier);
 
-class _HomeNavigationBuilder2State extends State<HomeNavigationBuilder> {
-  DrawerItem drawerItem = DrawerItem.home;
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text(drawerItem.title),
+        title: Text(navState.drawerItem.title),
       ),
-      body: widget.builder(
-        context,
-        drawerItem,
-        () async {
-          setState(() => drawerItem = DrawerItem.home);
-          return false;
-        },
-      ),
+      body: builder(context, navState.drawerItem),
       drawer: Builder(builder: (context) {
         return _AppDrawer(
-          selectedDrawerItem: drawerItem,
-          onSelectDrawerItem: (value) {
-            if (Scaffold.of(context).isDrawerOpen) Navigator.pop(context);
-            setState(() => drawerItem = value);
-          },
+          selectedDrawerItem: navState.drawerItem,
+          onSelectDrawerItem: (drawerItem) => modelNotifier.onNavigate(context, drawerItem),
         );
       }),
     );
