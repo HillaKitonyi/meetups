@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'sign_in_state.dart';
+part of 'profile_page_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,18 +14,24 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$SignInPageStateTearOff {
-  const _$SignInPageStateTearOff();
+class _$ProfilePageStateTearOff {
+  const _$ProfilePageStateTearOff();
 
-  _SignInPageState call(
-      {required String email,
+  _ProfilePageState call(
+      {required String? photoURL,
+      required bool edited,
+      required String email,
+      required String username,
       required String password,
       required bool loading,
       required bool showPassword,
       required bool showErrors,
       required Either<AuthFailure, Unit>? authFailureOrSuccess}) {
-    return _SignInPageState(
+    return _ProfilePageState(
+      photoURL: photoURL,
+      edited: edited,
       email: email,
+      username: username,
       password: password,
       loading: loading,
       showPassword: showPassword,
@@ -36,11 +42,14 @@ class _$SignInPageStateTearOff {
 }
 
 /// @nodoc
-const $SignInPageState = _$SignInPageStateTearOff();
+const $ProfilePageState = _$ProfilePageStateTearOff();
 
 /// @nodoc
-mixin _$SignInPageState {
+mixin _$ProfilePageState {
+  String? get photoURL => throw _privateConstructorUsedError;
+  bool get edited => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   bool get showPassword => throw _privateConstructorUsedError;
@@ -49,17 +58,20 @@ mixin _$SignInPageState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SignInPageStateCopyWith<SignInPageState> get copyWith =>
+  $ProfilePageStateCopyWith<ProfilePageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SignInPageStateCopyWith<$Res> {
-  factory $SignInPageStateCopyWith(
-          SignInPageState value, $Res Function(SignInPageState) then) =
-      _$SignInPageStateCopyWithImpl<$Res>;
+abstract class $ProfilePageStateCopyWith<$Res> {
+  factory $ProfilePageStateCopyWith(
+          ProfilePageState value, $Res Function(ProfilePageState) then) =
+      _$ProfilePageStateCopyWithImpl<$Res>;
   $Res call(
-      {String email,
+      {String? photoURL,
+      bool edited,
+      String email,
+      String username,
       String password,
       bool loading,
       bool showPassword,
@@ -68,17 +80,20 @@ abstract class $SignInPageStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SignInPageStateCopyWithImpl<$Res>
-    implements $SignInPageStateCopyWith<$Res> {
-  _$SignInPageStateCopyWithImpl(this._value, this._then);
+class _$ProfilePageStateCopyWithImpl<$Res>
+    implements $ProfilePageStateCopyWith<$Res> {
+  _$ProfilePageStateCopyWithImpl(this._value, this._then);
 
-  final SignInPageState _value;
+  final ProfilePageState _value;
   // ignore: unused_field
-  final $Res Function(SignInPageState) _then;
+  final $Res Function(ProfilePageState) _then;
 
   @override
   $Res call({
+    Object? photoURL = freezed,
+    Object? edited = freezed,
     Object? email = freezed,
+    Object? username = freezed,
     Object? password = freezed,
     Object? loading = freezed,
     Object? showPassword = freezed,
@@ -86,9 +101,21 @@ class _$SignInPageStateCopyWithImpl<$Res>
     Object? authFailureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
+      photoURL: photoURL == freezed
+          ? _value.photoURL
+          : photoURL // ignore: cast_nullable_to_non_nullable
+              as String?,
+      edited: edited == freezed
+          ? _value.edited
+          : edited // ignore: cast_nullable_to_non_nullable
+              as bool,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
@@ -115,14 +142,17 @@ class _$SignInPageStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SignInPageStateCopyWith<$Res>
-    implements $SignInPageStateCopyWith<$Res> {
-  factory _$SignInPageStateCopyWith(
-          _SignInPageState value, $Res Function(_SignInPageState) then) =
-      __$SignInPageStateCopyWithImpl<$Res>;
+abstract class _$ProfilePageStateCopyWith<$Res>
+    implements $ProfilePageStateCopyWith<$Res> {
+  factory _$ProfilePageStateCopyWith(
+          _ProfilePageState value, $Res Function(_ProfilePageState) then) =
+      __$ProfilePageStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String email,
+      {String? photoURL,
+      bool edited,
+      String email,
+      String username,
       String password,
       bool loading,
       bool showPassword,
@@ -131,29 +161,44 @@ abstract class _$SignInPageStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SignInPageStateCopyWithImpl<$Res>
-    extends _$SignInPageStateCopyWithImpl<$Res>
-    implements _$SignInPageStateCopyWith<$Res> {
-  __$SignInPageStateCopyWithImpl(
-      _SignInPageState _value, $Res Function(_SignInPageState) _then)
-      : super(_value, (v) => _then(v as _SignInPageState));
+class __$ProfilePageStateCopyWithImpl<$Res>
+    extends _$ProfilePageStateCopyWithImpl<$Res>
+    implements _$ProfilePageStateCopyWith<$Res> {
+  __$ProfilePageStateCopyWithImpl(
+      _ProfilePageState _value, $Res Function(_ProfilePageState) _then)
+      : super(_value, (v) => _then(v as _ProfilePageState));
 
   @override
-  _SignInPageState get _value => super._value as _SignInPageState;
+  _ProfilePageState get _value => super._value as _ProfilePageState;
 
   @override
   $Res call({
+    Object? photoURL = freezed,
+    Object? edited = freezed,
     Object? email = freezed,
+    Object? username = freezed,
     Object? password = freezed,
     Object? loading = freezed,
     Object? showPassword = freezed,
     Object? showErrors = freezed,
     Object? authFailureOrSuccess = freezed,
   }) {
-    return _then(_SignInPageState(
+    return _then(_ProfilePageState(
+      photoURL: photoURL == freezed
+          ? _value.photoURL
+          : photoURL // ignore: cast_nullable_to_non_nullable
+              as String?,
+      edited: edited == freezed
+          ? _value.edited
+          : edited // ignore: cast_nullable_to_non_nullable
+              as bool,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
@@ -181,9 +226,12 @@ class __$SignInPageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SignInPageState implements _SignInPageState {
-  const _$_SignInPageState(
-      {required this.email,
+class _$_ProfilePageState implements _ProfilePageState {
+  const _$_ProfilePageState(
+      {required this.photoURL,
+      required this.edited,
+      required this.email,
+      required this.username,
       required this.password,
       required this.loading,
       required this.showPassword,
@@ -191,7 +239,13 @@ class _$_SignInPageState implements _SignInPageState {
       required this.authFailureOrSuccess});
 
   @override
+  final String? photoURL;
+  @override
+  final bool edited;
+  @override
   final String email;
+  @override
+  final String username;
   @override
   final String password;
   @override
@@ -205,15 +259,23 @@ class _$_SignInPageState implements _SignInPageState {
 
   @override
   String toString() {
-    return 'SignInPageState(email: $email, password: $password, loading: $loading, showPassword: $showPassword, showErrors: $showErrors, authFailureOrSuccess: $authFailureOrSuccess)';
+    return 'ProfilePageState(photoURL: $photoURL, edited: $edited, email: $email, username: $username, password: $password, loading: $loading, showPassword: $showPassword, showErrors: $showErrors, authFailureOrSuccess: $authFailureOrSuccess)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SignInPageState &&
+        (other is _ProfilePageState &&
+            (identical(other.photoURL, photoURL) ||
+                const DeepCollectionEquality()
+                    .equals(other.photoURL, photoURL)) &&
+            (identical(other.edited, edited) ||
+                const DeepCollectionEquality().equals(other.edited, edited)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.username, username) ||
+                const DeepCollectionEquality()
+                    .equals(other.username, username)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
@@ -234,7 +296,10 @@ class _$_SignInPageState implements _SignInPageState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(photoURL) ^
+      const DeepCollectionEquality().hash(edited) ^
       const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(loading) ^
       const DeepCollectionEquality().hash(showPassword) ^
@@ -243,22 +308,31 @@ class _$_SignInPageState implements _SignInPageState {
 
   @JsonKey(ignore: true)
   @override
-  _$SignInPageStateCopyWith<_SignInPageState> get copyWith =>
-      __$SignInPageStateCopyWithImpl<_SignInPageState>(this, _$identity);
+  _$ProfilePageStateCopyWith<_ProfilePageState> get copyWith =>
+      __$ProfilePageStateCopyWithImpl<_ProfilePageState>(this, _$identity);
 }
 
-abstract class _SignInPageState implements SignInPageState {
-  const factory _SignInPageState(
-          {required String email,
+abstract class _ProfilePageState implements ProfilePageState {
+  const factory _ProfilePageState(
+          {required String? photoURL,
+          required bool edited,
+          required String email,
+          required String username,
           required String password,
           required bool loading,
           required bool showPassword,
           required bool showErrors,
           required Either<AuthFailure, Unit>? authFailureOrSuccess}) =
-      _$_SignInPageState;
+      _$_ProfilePageState;
 
   @override
+  String? get photoURL => throw _privateConstructorUsedError;
+  @override
+  bool get edited => throw _privateConstructorUsedError;
+  @override
   String get email => throw _privateConstructorUsedError;
+  @override
+  String get username => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
   @override
@@ -272,6 +346,6 @@ abstract class _SignInPageState implements SignInPageState {
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SignInPageStateCopyWith<_SignInPageState> get copyWith =>
+  _$ProfilePageStateCopyWith<_ProfilePageState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,22 +1,29 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/domain/auth/auth_failure.dart';
 
-part 'sign_in_state.freezed.dart';
+part 'profile_page_state.freezed.dart';
 
 @freezed
-abstract class SignInPageState with _$SignInPageState {
-  const factory SignInPageState({
+abstract class ProfilePageState with _$ProfilePageState {
+  const factory ProfilePageState({
+    required String? photoURL,
+    required bool edited,
     required String email,
+    required String username,
     required String password,
     required bool loading,
     required bool showPassword,
     required bool showErrors,
     required Either<AuthFailure, Unit>? authFailureOrSuccess,
-  }) = _SignInPageState;
+  }) = _ProfilePageState;
 
-  factory SignInPageState.initial() => const SignInPageState(
-        email: '',
+  factory ProfilePageState.initial(AppUser? appUser) => ProfilePageState(
+        photoURL: appUser?.photoURL,
+        edited: false,
+        email: appUser!.email,
+        username: appUser.username,
         password: '',
         loading: false,
         showPassword: false,

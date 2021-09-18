@@ -10,26 +10,25 @@ class SignInForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenHeight = MediaQuery.of(context).size.height;
     final modelNotifier = ref.read(signInModelProvider.notifier);
     final bool showErrors = ref.watch(signInModelProvider.select((state) => state.showErrors));
     final bool loading = ref.watch(signInModelProvider.select((state) => state.loading));
 
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Form(
         autovalidateMode: showErrors ? AutovalidateMode.always : AutovalidateMode.disabled,
         child: ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
           children: [
-            if (loading) const _Loader(),
-            const SizedBox(height: 16),
+            Loader(loading: loading),
+            SizedBox(height: screenHeight * 0.07),
             SvgPicture.asset('assets/undraw_fill_form.svg', height: 200),
-            const SizedBox(height: 16),
+            SizedBox(height: screenHeight * 0.07),
             const _EmailTextField(),
-            const SizedBox(height: 16),
+            SizedBox(height: screenHeight * 0.01),
             const _PasswordTextField(),
-            const SizedBox(height: 16),
+            SizedBox(height: screenHeight * 0.01),
             _ButtonRow(
               loading: loading,
               onLoginPressed: modelNotifier.loginButtonPressed,
@@ -40,6 +39,7 @@ class SignInForm extends ConsumerWidget {
               loading: loading,
               onGoogleSignIn: modelNotifier.googleButtonPressed,
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
@@ -177,11 +177,17 @@ class _GoogleButton extends StatelessWidget {
   }
 }
 
-class _Loader extends StatelessWidget {
-  const _Loader({Key? key}) : super(key: key);
+class Loader extends StatelessWidget {
+  final bool loading;
+  const Loader({Key? key, required this.loading}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return LinearProgressIndicator(backgroundColor: Theme.of(context).scaffoldBackgroundColor);
+    return SizedBox(
+      height: 4,
+      child: loading
+          ? LinearProgressIndicator(backgroundColor: Theme.of(context).scaffoldBackgroundColor)
+          : null,
+    );
   }
 }

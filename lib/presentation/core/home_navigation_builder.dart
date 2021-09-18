@@ -162,12 +162,12 @@ class _DrawerHeader extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                appUser.username!.toUpperCase(),
+                appUser.username.toUpperCase(),
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 24, letterSpacing: 1),
               ),
               const SizedBox(height: 16),
-              Text(appUser.email!, overflow: TextOverflow.fade),
+              Text(appUser.email, overflow: TextOverflow.fade),
             ],
           ),
         ),

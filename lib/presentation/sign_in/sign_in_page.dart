@@ -31,6 +31,9 @@ class SignInPage extends ConsumerWidget {
   }
 
   void _showErrorSnackbar(BuildContext context, String message) {
-    FlushbarHelper.createError(message: message, duration: const Duration(seconds: 5));
+    FlushbarHelper.createError(
+      message: message,
+      duration: const Duration(seconds: 5),
+    ).show(context);
   }
 }

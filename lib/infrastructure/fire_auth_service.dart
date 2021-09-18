@@ -4,8 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/domain/auth/auth_failure.dart';
+import 'package:meetups/domain/auth/value_validators.dart';
 
-final appUserProvider = Provider<AppUser>((_) => throw UnimplementedError());
+final appUserProvider = Provider<AppUser>((ref) {
+  return ref.watch(appUserStreamProvider).maybeWhen(
+        data: (userOption) => userOption.fold(() => AppUser.empty(), (a) => a),
+        orElse: () => AppUser.empty(),
+      );
+}, name: 'appUserProvider');
 
 final appUserStreamProvider = StreamProvider<Option<AppUser>>((_) {
   return FireAuthService.instance.appUserStream();
@@ -76,6 +82,25 @@ class FireAuthService {
     return _auth
         .authStateChanges()
         .map((user) => user == null ? none() : some(AppUser.fromFirebaseUser(user)));
+  }
+
+  Future<Either<AuthFailure, Unit>> updateFirebaseUser(AppUser appUser, String password) async {
+    try {
+      await _auth.currentUser?.updateDisplayName(appUser.username);
+      await _auth.currentUser?.updateEmail(appUser.email);
+      final bool passwordIsValid = validatePassword(password).isRight();
+      if (passwordIsValid) await _auth.currentUser?.updatePassword(password);
+      await _auth.currentUser?.updatePhotoURL(appUser.photoURL);
+      await _auth.currentUser?.reload();
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        return left(const AuthFailure.emailAlreadyInUse());
+      } else {
+        print(e.message);
+        return left(const AuthFailure.serverError());
+      }
+    }
   }
 
   Future<void> logout() async {

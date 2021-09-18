@@ -19,8 +19,8 @@ class _$AppUserTearOff {
 
   _AppUser call(
       {required String uid,
-      required String? email,
-      required String? username,
+      required String email,
+      required String username,
       required String? photoURL}) {
     return _AppUser(
       uid: uid,
@@ -37,8 +37,8 @@ const $AppUser = _$AppUserTearOff();
 /// @nodoc
 mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String? get photoURL => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ mixin _$AppUser {
 abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res>;
-  $Res call({String uid, String? email, String? username, String? photoURL});
+  $Res call({String uid, String email, String username, String? photoURL});
 }
 
 /// @nodoc
@@ -75,11 +75,11 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       photoURL: photoURL == freezed
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   factory _$AppUserCopyWith(_AppUser value, $Res Function(_AppUser) then) =
       __$AppUserCopyWithImpl<$Res>;
   @override
-  $Res call({String uid, String? email, String? username, String? photoURL});
+  $Res call({String uid, String email, String username, String? photoURL});
 }
 
 /// @nodoc
@@ -120,11 +120,11 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       photoURL: photoURL == freezed
           ? _value.photoURL
           : photoURL // ignore: cast_nullable_to_non_nullable
@@ -145,9 +145,9 @@ class _$_AppUser implements _AppUser {
   @override
   final String uid;
   @override
-  final String? email;
+  final String email;
   @override
-  final String? username;
+  final String username;
   @override
   final String? photoURL;
 
@@ -189,16 +189,16 @@ class _$_AppUser implements _AppUser {
 abstract class _AppUser implements AppUser {
   const factory _AppUser(
       {required String uid,
-      required String? email,
-      required String? username,
+      required String email,
+      required String username,
       required String? photoURL}) = _$_AppUser;
 
   @override
   String get uid => throw _privateConstructorUsedError;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   @override
-  String? get username => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   @override
   String? get photoURL => throw _privateConstructorUsedError;
   @override
