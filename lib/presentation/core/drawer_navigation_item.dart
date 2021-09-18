@@ -22,16 +22,16 @@ extension DrawerItemX on DrawerItem {
     }
   }
 
-  Widget buildPage() {
+  Widget buildPage(Future<bool> Function() onBackPressed) {
     switch (this) {
       case DrawerItem.home:
         return const HomePage();
       case DrawerItem.viewMeetups:
-        return const MeetupsPage();
+        return MeetupsPage(onbackPressed: onBackPressed);
       case DrawerItem.organizeMeetups:
-        return const OrganizeMeetupsPage();
+        return OrganizeMeetupsPage(onbackPressed: onBackPressed);
       case DrawerItem.profile:
-        return const ProfilePage();
+        return ProfilePage(onBackPressed: onBackPressed);
       default:
         return const HomePage();
     }

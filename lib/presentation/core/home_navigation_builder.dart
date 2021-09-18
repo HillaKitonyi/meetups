@@ -9,14 +9,21 @@ import 'package:transparent_image/transparent_image.dart';
 import 'drawer_navigation_item.dart';
 
 class HomeNavigationBuilder extends StatefulWidget {
-  final Widget Function(BuildContext context, DrawerItem drawerItem) builder;
+  final Widget Function(
+    BuildContext context,
+    DrawerItem drawerItem,
+    Future<bool> Function() onBackPressed,
+  ) builder;
   const HomeNavigationBuilder({Key? key, required this.builder}) : super(key: key);
 
   static Widget create(AppUser appUser) {
     return ProviderScope(
       overrides: [appUserProvider.overrideWithValue(appUser)],
-      child: HomeNavigationBuilder(builder: (context, drawerItem) {
-        return drawerItem.buildPage();
+      child: HomeNavigationBuilder(builder: (context, drawerItem, onBackPressed) {
+        return WillPopScope(
+          child: drawerItem.buildPage(onBackPressed),
+          onWillPop: onBackPressed,
+        );
       }),
     );
   }
@@ -35,7 +42,14 @@ class _HomeNavigationBuilder2State extends State<HomeNavigationBuilder> {
         elevation: 0,
         title: Text(drawerItem.title),
       ),
-      body: widget.builder(context, drawerItem),
+      body: widget.builder(
+        context,
+        drawerItem,
+        () async {
+          setState(() => drawerItem = DrawerItem.home);
+          return false;
+        },
+      ),
       drawer: Builder(builder: (context) {
         return _AppDrawer(
           selectedDrawerItem: drawerItem,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Future<bool> Function()? onBackPressed;
+  const HomePage({Key? key, this.onBackPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
