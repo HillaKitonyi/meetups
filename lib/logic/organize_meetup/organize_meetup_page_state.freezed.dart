@@ -18,7 +18,8 @@ class _$OrganizeMeetupPageStateTearOff {
   const _$OrganizeMeetupPageStateTearOff();
 
   _OrganizeMeetupPageState call(
-      {required bool loading,
+      {required GlobalKey<FormState> formKey,
+      required bool loading,
       required bool showErrors,
       required bool isEditing,
       required String title,
@@ -30,6 +31,7 @@ class _$OrganizeMeetupPageStateTearOff {
       required DateTime date,
       required Either<FirestoreFailure, Unit>? databaseFailureOrSuccess}) {
     return _OrganizeMeetupPageState(
+      formKey: formKey,
       loading: loading,
       showErrors: showErrors,
       isEditing: isEditing,
@@ -50,6 +52,7 @@ const $OrganizeMeetupPageState = _$OrganizeMeetupPageStateTearOff();
 
 /// @nodoc
 mixin _$OrganizeMeetupPageState {
+  GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   bool get showErrors => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
@@ -74,7 +77,8 @@ abstract class $OrganizeMeetupPageStateCopyWith<$Res> {
           $Res Function(OrganizeMeetupPageState) then) =
       _$OrganizeMeetupPageStateCopyWithImpl<$Res>;
   $Res call(
-      {bool loading,
+      {GlobalKey<FormState> formKey,
+      bool loading,
       bool showErrors,
       bool isEditing,
       String title,
@@ -98,6 +102,7 @@ class _$OrganizeMeetupPageStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? formKey = freezed,
     Object? loading = freezed,
     Object? showErrors = freezed,
     Object? isEditing = freezed,
@@ -111,6 +116,10 @@ class _$OrganizeMeetupPageStateCopyWithImpl<$Res>
     Object? databaseFailureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
+      formKey: formKey == freezed
+          ? _value.formKey
+          : formKey // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -167,7 +176,8 @@ abstract class _$OrganizeMeetupPageStateCopyWith<$Res>
       __$OrganizeMeetupPageStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool loading,
+      {GlobalKey<FormState> formKey,
+      bool loading,
       bool showErrors,
       bool isEditing,
       String title,
@@ -194,6 +204,7 @@ class __$OrganizeMeetupPageStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? formKey = freezed,
     Object? loading = freezed,
     Object? showErrors = freezed,
     Object? isEditing = freezed,
@@ -207,6 +218,10 @@ class __$OrganizeMeetupPageStateCopyWithImpl<$Res>
     Object? databaseFailureOrSuccess = freezed,
   }) {
     return _then(_OrganizeMeetupPageState(
+      formKey: formKey == freezed
+          ? _value.formKey
+          : formKey // ignore: cast_nullable_to_non_nullable
+              as GlobalKey<FormState>,
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -259,7 +274,8 @@ class __$OrganizeMeetupPageStateCopyWithImpl<$Res>
 
 class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
   const _$_OrganizeMeetupPageState(
-      {required this.loading,
+      {required this.formKey,
+      required this.loading,
       required this.showErrors,
       required this.isEditing,
       required this.title,
@@ -271,6 +287,8 @@ class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
       required this.date,
       required this.databaseFailureOrSuccess});
 
+  @override
+  final GlobalKey<FormState> formKey;
   @override
   final bool loading;
   @override
@@ -296,13 +314,16 @@ class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
 
   @override
   String toString() {
-    return 'OrganizeMeetupPageState(loading: $loading, showErrors: $showErrors, isEditing: $isEditing, title: $title, category: $category, photoURL: $photoURL, description: $description, location: $location, timeOfDay: $timeOfDay, date: $date, databaseFailureOrSuccess: $databaseFailureOrSuccess)';
+    return 'OrganizeMeetupPageState(formKey: $formKey, loading: $loading, showErrors: $showErrors, isEditing: $isEditing, title: $title, category: $category, photoURL: $photoURL, description: $description, location: $location, timeOfDay: $timeOfDay, date: $date, databaseFailureOrSuccess: $databaseFailureOrSuccess)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _OrganizeMeetupPageState &&
+            (identical(other.formKey, formKey) ||
+                const DeepCollectionEquality()
+                    .equals(other.formKey, formKey)) &&
             (identical(other.loading, loading) ||
                 const DeepCollectionEquality()
                     .equals(other.loading, loading)) &&
@@ -340,6 +361,7 @@ class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(formKey) ^
       const DeepCollectionEquality().hash(loading) ^
       const DeepCollectionEquality().hash(showErrors) ^
       const DeepCollectionEquality().hash(isEditing) ^
@@ -361,7 +383,8 @@ class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
 
 abstract class _OrganizeMeetupPageState implements OrganizeMeetupPageState {
   const factory _OrganizeMeetupPageState(
-          {required bool loading,
+          {required GlobalKey<FormState> formKey,
+          required bool loading,
           required bool showErrors,
           required bool isEditing,
           required String title,
@@ -374,6 +397,8 @@ abstract class _OrganizeMeetupPageState implements OrganizeMeetupPageState {
           required Either<FirestoreFailure, Unit>? databaseFailureOrSuccess}) =
       _$_OrganizeMeetupPageState;
 
+  @override
+  GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
   @override
   bool get loading => throw _privateConstructorUsedError;
   @override

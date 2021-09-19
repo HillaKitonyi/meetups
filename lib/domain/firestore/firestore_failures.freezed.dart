@@ -20,6 +20,10 @@ class _$FirestoreFailureTearOff {
   _ServerError serverError() {
     return const _ServerError();
   }
+
+  _PermissionDenied permissionDenied() {
+    return const _PermissionDenied();
+  }
 }
 
 /// @nodoc
@@ -30,32 +34,38 @@ mixin _$FirestoreFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() serverError,
+    required TResult Function() permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? serverError,
+    TResult Function()? permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? serverError,
+    TResult Function()? permissionDenied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_PermissionDenied value) permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionDenied value)? permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionDenied value)? permissionDenied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,8 +109,8 @@ class __$ServerErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ServerError implements _ServerError {
-  const _$_ServerError();
+class _$_ServerError extends _ServerError {
+  const _$_ServerError() : super._();
 
   @override
   String toString() {
@@ -119,6 +129,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() serverError,
+    required TResult Function() permissionDenied,
   }) {
     return serverError();
   }
@@ -127,6 +138,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? serverError,
+    TResult Function()? permissionDenied,
   }) {
     return serverError?.call();
   }
@@ -135,6 +147,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? serverError,
+    TResult Function()? permissionDenied,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -147,6 +160,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerError value) serverError,
+    required TResult Function(_PermissionDenied value) permissionDenied,
   }) {
     return serverError(this);
   }
@@ -155,6 +169,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionDenied value)? permissionDenied,
   }) {
     return serverError?.call(this);
   }
@@ -163,6 +178,7 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionDenied value)? permissionDenied,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -172,6 +188,112 @@ class _$_ServerError implements _ServerError {
   }
 }
 
-abstract class _ServerError implements FirestoreFailure {
+abstract class _ServerError extends FirestoreFailure {
   const factory _ServerError() = _$_ServerError;
+  const _ServerError._() : super._();
+}
+
+/// @nodoc
+abstract class _$PermissionDeniedCopyWith<$Res> {
+  factory _$PermissionDeniedCopyWith(
+          _PermissionDenied value, $Res Function(_PermissionDenied) then) =
+      __$PermissionDeniedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$PermissionDeniedCopyWithImpl<$Res>
+    extends _$FirestoreFailureCopyWithImpl<$Res>
+    implements _$PermissionDeniedCopyWith<$Res> {
+  __$PermissionDeniedCopyWithImpl(
+      _PermissionDenied _value, $Res Function(_PermissionDenied) _then)
+      : super(_value, (v) => _then(v as _PermissionDenied));
+
+  @override
+  _PermissionDenied get _value => super._value as _PermissionDenied;
+}
+
+/// @nodoc
+
+class _$_PermissionDenied extends _PermissionDenied {
+  const _$_PermissionDenied() : super._();
+
+  @override
+  String toString() {
+    return 'FirestoreFailure.permissionDenied()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _PermissionDenied);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() serverError,
+    required TResult Function() permissionDenied,
+  }) {
+    return permissionDenied();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? permissionDenied,
+  }) {
+    return permissionDenied?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? serverError,
+    TResult Function()? permissionDenied,
+    required TResult orElse(),
+  }) {
+    if (permissionDenied != null) {
+      return permissionDenied();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_PermissionDenied value) permissionDenied,
+  }) {
+    return permissionDenied(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionDenied value)? permissionDenied,
+  }) {
+    return permissionDenied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_PermissionDenied value)? permissionDenied,
+    required TResult orElse(),
+  }) {
+    if (permissionDenied != null) {
+      return permissionDenied(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PermissionDenied extends FirestoreFailure {
+  const factory _PermissionDenied() = _$_PermissionDenied;
+  const _PermissionDenied._() : super._();
 }

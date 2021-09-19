@@ -10,6 +10,7 @@ part 'organize_meetup_page_state.freezed.dart';
 @freezed
 abstract class OrganizeMeetupPageState with _$OrganizeMeetupPageState {
   const factory OrganizeMeetupPageState({
+    required GlobalKey<FormState> formKey,
     required bool loading,
     required bool showErrors,
     required bool isEditing,
@@ -24,6 +25,7 @@ abstract class OrganizeMeetupPageState with _$OrganizeMeetupPageState {
   }) = _OrganizeMeetupPageState;
 
   factory OrganizeMeetupPageState.initial() => OrganizeMeetupPageState(
+        formKey: GlobalKey<FormState>(),
         loading: false,
         showErrors: false,
         isEditing: false,
@@ -38,6 +40,7 @@ abstract class OrganizeMeetupPageState with _$OrganizeMeetupPageState {
       );
 
   factory OrganizeMeetupPageState.fromMeetup(Meetup meetup) => OrganizeMeetupPageState(
+        formKey: GlobalKey<FormState>(),
         loading: false,
         showErrors: false,
         isEditing: true,
