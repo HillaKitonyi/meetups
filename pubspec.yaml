@@ -31,6 +31,7 @@ dependencies:
   cloud_firestore: ^2.5.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
+  enum_to_string: ^2.0.0
   firebase_auth: ^3.1.1
   firebase_core: ^1.6.0
   firebase_storage: ^10.0.3
@@ -41,6 +42,7 @@ dependencies:
   freezed_annotation: ^0.14.3
   google_sign_in: ^5.1.0
   image_picker: ^0.8.4+2
+  intl: ^0.17.0
   json_annotation: ^4.1.0
   transparent_image: ^2.0.0
   uuid: ^3.0.4

@@ -1,0 +1,20 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true,
+    "**/.vscode": true,
+    "**/*.freezed.dart": true,
+    "**/*.g.dart": true,
+    "**/**.gr.dart": true,
+    "**/node_modules": true,
+    "*/generated_plugin_registrant.dart": true,
+    "env": true,
+    "venv": true
+  },
+  "explorerExclude.backup": null
+}

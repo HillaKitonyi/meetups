@@ -11,15 +11,6 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final buttonStyle = ButtonStyle(
-      padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 8)),
-      elevation: MaterialStateProperty.all(0),
-      shape: MaterialStateProperty.all(
-        const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
-      ),
-      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 18, letterSpacing: 1)),
-    );
-
     return Scaffold(
       body: ListView(children: const [
         HorizontalFeaturedMeetups(),
