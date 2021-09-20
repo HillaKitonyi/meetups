@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meetups/domain/auth/value_validators.dart';
+import 'package:meetups/domain/core/value_validators.dart';
 import 'package:meetups/logic/sign_in/sign_in_model.dart';
 
 class SignInForm extends ConsumerWidget {

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/domain/auth/auth_failure.dart';
-import 'package:meetups/domain/auth/value_validators.dart';
+import 'package:meetups/domain/core/value_validators.dart';
 
 final appUserProvider = Provider<AppUser>((ref) {
   return ref.watch(appUserStreamProvider).maybeWhen(

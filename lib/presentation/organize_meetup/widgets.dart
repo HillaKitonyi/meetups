@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meetups/domain/core/value_validators.dart';
 import 'package:meetups/domain/firestore/meetup_category.dart';
 import 'package:meetups/logic/organize_meetup/organize_meetup_page_model.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -14,13 +15,21 @@ class TitleTextField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final String title = ref.watch(organizeMeetupModelProvider.select((state) => state.title));
     return TextFormField(
+      maxLength: 50,
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.title),
         labelText: 'Title',
         hintText: title,
       ),
       onChanged: ref.read(organizeMeetupModelProvider.notifier).meetupTitleChanged,
-      // validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
+      validator: (_) {
+        final titleStr = ref.read(organizeMeetupModelProvider).title;
+        return validateNotEmpty(titleStr).flatMap((a) => validateMaxLength(a, 50)).fold(
+              (failure) => failure.message,
+              (_) => null,
+            );
+      },
     );
   }
 }
@@ -102,13 +111,21 @@ class DescriptionTextField extends ConsumerWidget {
     final description = ref.watch(organizeMeetupModelProvider.select((state) => state.description));
     return TextFormField(
       maxLines: 5,
+      maxLength: 200,
+      textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
         alignLabelWithHint: true,
         labelText: 'Description',
         hintText: description,
       ),
       onChanged: ref.read(organizeMeetupModelProvider.notifier).meetupDescriptionChanged,
-      // validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
+      validator: (_) {
+        final descriptionStr = ref.read(organizeMeetupModelProvider).description;
+        return validateNotEmpty(descriptionStr).flatMap((a) => validateMaxLength(a, 200)).fold(
+              (failure) => failure.message,
+              (_) => null,
+            );
+      },
     );
   }
 }
@@ -122,13 +139,21 @@ class LocationTextField extends ConsumerWidget {
       organizeMeetupModelProvider.select((state) => state.location),
     );
     return TextFormField(
+      maxLength: 30,
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.location_pin),
         labelText: 'Location',
         hintText: location,
       ),
       onChanged: ref.read(organizeMeetupModelProvider.notifier).meetupLocationChanged,
-      // validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
+      validator: (_) {
+        final locationStr = ref.read(organizeMeetupModelProvider).location;
+        return validateNotEmpty(locationStr).flatMap((a) => validateMaxLength(a, 30)).fold(
+              (failure) => failure.message,
+              (_) => null,
+            );
+      },
     );
   }
 }

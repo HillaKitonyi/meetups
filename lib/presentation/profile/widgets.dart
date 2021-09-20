@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meetups/domain/auth/value_validators.dart';
+import 'package:meetups/domain/core/value_validators.dart';
 import 'package:meetups/infrastructure/fire_auth_service.dart';
 import 'package:meetups/logic/profile/profile_page_model.dart';
 import 'package:transparent_image/transparent_image.dart';

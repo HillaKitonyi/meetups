@@ -63,6 +63,7 @@ class _AppDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const itemTitleStyle = TextStyle(fontSize: 18, letterSpacing: 1);
     return Drawer(
       child: DecoratedBox(
         decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(0.2)),
@@ -74,7 +75,7 @@ class _AppDrawer extends ConsumerWidget {
               selected: selectedDrawerItem == DrawerItem.home,
               selectedTileColor: Theme.of(context).scaffoldBackgroundColor,
               leading: const Icon(Icons.home_rounded),
-              title: const Text('Home'),
+              title: const Text('Home', style: itemTitleStyle),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => onSelectDrawerItem(DrawerItem.home),
             ),
@@ -82,7 +83,7 @@ class _AppDrawer extends ConsumerWidget {
               selected: selectedDrawerItem == DrawerItem.viewMeetups,
               selectedTileColor: Theme.of(context).scaffoldBackgroundColor,
               leading: const Icon(Icons.supervisor_account_rounded),
-              title: const Text('View Meetups'),
+              title: const Text('View Meetups', style: itemTitleStyle),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () {
                 ref.read(meetupCategoryProvider).state = null;
@@ -93,7 +94,7 @@ class _AppDrawer extends ConsumerWidget {
               selected: selectedDrawerItem == DrawerItem.organizeMeetups,
               selectedTileColor: Theme.of(context).scaffoldBackgroundColor,
               leading: const Icon(Icons.perm_contact_calendar_sharp),
-              title: const Text('Organize Meetup'),
+              title: const Text('Organize Meetup', style: itemTitleStyle),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => onSelectDrawerItem(DrawerItem.organizeMeetups),
             ),
@@ -101,7 +102,7 @@ class _AppDrawer extends ConsumerWidget {
               selected: selectedDrawerItem == DrawerItem.profile,
               selectedTileColor: Theme.of(context).scaffoldBackgroundColor,
               leading: const Icon(Icons.person_rounded),
-              title: const Text('Profile'),
+              title: const Text('Profile', style: itemTitleStyle),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => onSelectDrawerItem(DrawerItem.profile),
             ),
@@ -109,7 +110,7 @@ class _AppDrawer extends ConsumerWidget {
               selected: selectedDrawerItem == DrawerItem.logout,
               selectedTileColor: Theme.of(context).scaffoldBackgroundColor,
               leading: const Icon(Icons.logout_rounded),
-              title: const Text('Log out'),
+              title: const Text('Log out', style: itemTitleStyle),
               onTap: () {
                 onSelectDrawerItem(DrawerItem.home);
                 ref.read(homePageModelProvider.notifier).onLogoutRequest();

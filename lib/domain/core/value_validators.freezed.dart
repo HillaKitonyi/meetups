@@ -34,6 +34,13 @@ class _$ValueFailureTearOff {
       failedVal,
     );
   }
+
+  _ExceededLength<T> exceededLength<T>(T failedVal, int maxLength) {
+    return _ExceededLength<T>(
+      failedVal,
+      maxLength,
+    );
+  }
 }
 
 /// @nodoc
@@ -48,6 +55,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(T failedVal) invalidEmail,
     required TResult Function(T failedVal) shortPassword,
     required TResult Function(T failedVal) empty,
+    required TResult Function(T failedVal, int maxLength) exceededLength,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +63,7 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +71,7 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +80,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_Empty<T> value) empty,
+    required TResult Function(_ExceededLength<T> value) exceededLength,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +88,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +96,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -194,6 +207,7 @@ class _$_InvalidEmail<T> extends _InvalidEmail<T> {
     required TResult Function(T failedVal) invalidEmail,
     required TResult Function(T failedVal) shortPassword,
     required TResult Function(T failedVal) empty,
+    required TResult Function(T failedVal, int maxLength) exceededLength,
   }) {
     return invalidEmail(failedVal);
   }
@@ -204,6 +218,7 @@ class _$_InvalidEmail<T> extends _InvalidEmail<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
   }) {
     return invalidEmail?.call(failedVal);
   }
@@ -214,6 +229,7 @@ class _$_InvalidEmail<T> extends _InvalidEmail<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -228,6 +244,7 @@ class _$_InvalidEmail<T> extends _InvalidEmail<T> {
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_Empty<T> value) empty,
+    required TResult Function(_ExceededLength<T> value) exceededLength,
   }) {
     return invalidEmail(this);
   }
@@ -238,6 +255,7 @@ class _$_InvalidEmail<T> extends _InvalidEmail<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
   }) {
     return invalidEmail?.call(this);
   }
@@ -248,6 +266,7 @@ class _$_InvalidEmail<T> extends _InvalidEmail<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -340,6 +359,7 @@ class _$_ShortPassword<T> extends _ShortPassword<T> {
     required TResult Function(T failedVal) invalidEmail,
     required TResult Function(T failedVal) shortPassword,
     required TResult Function(T failedVal) empty,
+    required TResult Function(T failedVal, int maxLength) exceededLength,
   }) {
     return shortPassword(failedVal);
   }
@@ -350,6 +370,7 @@ class _$_ShortPassword<T> extends _ShortPassword<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
   }) {
     return shortPassword?.call(failedVal);
   }
@@ -360,6 +381,7 @@ class _$_ShortPassword<T> extends _ShortPassword<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -374,6 +396,7 @@ class _$_ShortPassword<T> extends _ShortPassword<T> {
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_Empty<T> value) empty,
+    required TResult Function(_ExceededLength<T> value) exceededLength,
   }) {
     return shortPassword(this);
   }
@@ -384,6 +407,7 @@ class _$_ShortPassword<T> extends _ShortPassword<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
   }) {
     return shortPassword?.call(this);
   }
@@ -394,6 +418,7 @@ class _$_ShortPassword<T> extends _ShortPassword<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -483,6 +508,7 @@ class _$_Empty<T> extends _Empty<T> {
     required TResult Function(T failedVal) invalidEmail,
     required TResult Function(T failedVal) shortPassword,
     required TResult Function(T failedVal) empty,
+    required TResult Function(T failedVal, int maxLength) exceededLength,
   }) {
     return empty(failedVal);
   }
@@ -493,6 +519,7 @@ class _$_Empty<T> extends _Empty<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
   }) {
     return empty?.call(failedVal);
   }
@@ -503,6 +530,7 @@ class _$_Empty<T> extends _Empty<T> {
     TResult Function(T failedVal)? invalidEmail,
     TResult Function(T failedVal)? shortPassword,
     TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -517,6 +545,7 @@ class _$_Empty<T> extends _Empty<T> {
     required TResult Function(_InvalidEmail<T> value) invalidEmail,
     required TResult Function(_ShortPassword<T> value) shortPassword,
     required TResult Function(_Empty<T> value) empty,
+    required TResult Function(_ExceededLength<T> value) exceededLength,
   }) {
     return empty(this);
   }
@@ -527,6 +556,7 @@ class _$_Empty<T> extends _Empty<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
   }) {
     return empty?.call(this);
   }
@@ -537,6 +567,7 @@ class _$_Empty<T> extends _Empty<T> {
     TResult Function(_InvalidEmail<T> value)? invalidEmail,
     TResult Function(_ShortPassword<T> value)? shortPassword,
     TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -555,5 +586,171 @@ abstract class _Empty<T> extends ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   _$EmptyCopyWith<T, _Empty<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ExceededLengthCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$ExceededLengthCopyWith(
+          _ExceededLength<T> value, $Res Function(_ExceededLength<T>) then) =
+      __$ExceededLengthCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedVal, int maxLength});
+}
+
+/// @nodoc
+class __$ExceededLengthCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$ExceededLengthCopyWith<T, $Res> {
+  __$ExceededLengthCopyWithImpl(
+      _ExceededLength<T> _value, $Res Function(_ExceededLength<T>) _then)
+      : super(_value, (v) => _then(v as _ExceededLength<T>));
+
+  @override
+  _ExceededLength<T> get _value => super._value as _ExceededLength<T>;
+
+  @override
+  $Res call({
+    Object? failedVal = freezed,
+    Object? maxLength = freezed,
+  }) {
+    return _then(_ExceededLength<T>(
+      failedVal == freezed
+          ? _value.failedVal
+          : failedVal // ignore: cast_nullable_to_non_nullable
+              as T,
+      maxLength == freezed
+          ? _value.maxLength
+          : maxLength // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ExceededLength<T> extends _ExceededLength<T> {
+  const _$_ExceededLength(this.failedVal, this.maxLength) : super._();
+
+  @override
+  final T failedVal;
+  @override
+  final int maxLength;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.exceededLength(failedVal: $failedVal, maxLength: $maxLength)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ExceededLength<T> &&
+            (identical(other.failedVal, failedVal) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedVal, failedVal)) &&
+            (identical(other.maxLength, maxLength) ||
+                const DeepCollectionEquality()
+                    .equals(other.maxLength, maxLength)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failedVal) ^
+      const DeepCollectionEquality().hash(maxLength);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ExceededLengthCopyWith<T, _ExceededLength<T>> get copyWith =>
+      __$ExceededLengthCopyWithImpl<T, _ExceededLength<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedVal) invalidEmail,
+    required TResult Function(T failedVal) shortPassword,
+    required TResult Function(T failedVal) empty,
+    required TResult Function(T failedVal, int maxLength) exceededLength,
+  }) {
+    return exceededLength(failedVal, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedVal)? invalidEmail,
+    TResult Function(T failedVal)? shortPassword,
+    TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
+  }) {
+    return exceededLength?.call(failedVal, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedVal)? invalidEmail,
+    TResult Function(T failedVal)? shortPassword,
+    TResult Function(T failedVal)? empty,
+    TResult Function(T failedVal, int maxLength)? exceededLength,
+    required TResult orElse(),
+  }) {
+    if (exceededLength != null) {
+      return exceededLength(failedVal, maxLength);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InvalidEmail<T> value) invalidEmail,
+    required TResult Function(_ShortPassword<T> value) shortPassword,
+    required TResult Function(_Empty<T> value) empty,
+    required TResult Function(_ExceededLength<T> value) exceededLength,
+  }) {
+    return exceededLength(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
+  }) {
+    return exceededLength?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InvalidEmail<T> value)? invalidEmail,
+    TResult Function(_ShortPassword<T> value)? shortPassword,
+    TResult Function(_Empty<T> value)? empty,
+    TResult Function(_ExceededLength<T> value)? exceededLength,
+    required TResult orElse(),
+  }) {
+    if (exceededLength != null) {
+      return exceededLength(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExceededLength<T> extends ValueFailure<T> {
+  const factory _ExceededLength(T failedVal, int maxLength) =
+      _$_ExceededLength<T>;
+  const _ExceededLength._() : super._();
+
+  @override
+  T get failedVal => throw _privateConstructorUsedError;
+  int get maxLength => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ExceededLengthCopyWith<T, _ExceededLength<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

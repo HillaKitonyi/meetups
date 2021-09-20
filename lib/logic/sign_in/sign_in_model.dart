@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meetups/domain/auth/auth_failure.dart';
-import 'package:meetups/domain/auth/value_validators.dart';
+import 'package:meetups/domain/core/value_validators.dart';
 import 'package:meetups/infrastructure/fire_auth_service.dart';
 import 'package:meetups/logic/sign_in/sign_in_state.dart';
 

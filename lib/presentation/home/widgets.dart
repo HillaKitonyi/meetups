@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -36,7 +37,7 @@ class HorizontalFeaturedMeetups extends ConsumerWidget {
           ),
         ),
         SizedBox(
-          height: 250,
+          height: 270,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
@@ -78,70 +79,52 @@ class _FeaturedMeetup extends StatelessWidget {
               child: Container(
                 width: 250,
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
-                child: Column(children: [
-                  meetup.photoUrl == null
-                      ? Hero(
-                          tag: meetup.uid!,
-                          child: Image.asset(
-                            meetup.category.assetPicturePath(),
-                            fit: BoxFit.fitHeight,
-                            height: 180,
-                            width: 250,
-                          ),
-                        )
-                      : Hero(
-                          tag: meetup.uid!,
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: meetup.photoUrl!,
-                            fit: BoxFit.cover,
-                            height: 180,
-                            width: 250,
-                          ),
-                        ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          child: Container(
-                            color: Theme.of(context).scaffoldBackgroundColor.withAlpha(200),
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.date_range_rounded, size: 12),
-                                const SizedBox(width: 4),
-                                Text(DateFormat('d MMM').format(meetup.dateAndTime)),
-                              ],
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      meetup.photoUrl == null
+                          ? Hero(
+                              tag: meetup.uid!,
+                              child: Image.asset(
+                                meetup.category.assetPicturePath(),
+                                fit: BoxFit.fitHeight,
+                                height: 155,
+                                width: 250,
+                              ),
+                            )
+                          : Hero(
+                              tag: meetup.uid!,
+                              child: FadeInImage.memoryNetwork(
+                                placeholder: kTransparentImage,
+                                image: meetup.photoUrl!,
+                                fit: BoxFit.cover,
+                                height: 155,
+                                width: 250,
+                              ),
                             ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Wrap(
+                            runSpacing: 2,
+                            children: [
+                              Chip(
+                                avatar: const Icon(CupertinoIcons.clock, size: 18),
+                                label: Text(DateFormat('d MMM').format(meetup.dateAndTime)),
+                                visualDensity: VisualDensity.compact,
+                              ),
+                              const SizedBox(width: 4),
+                              Chip(
+                                avatar: const Icon(CupertinoIcons.location, size: 18),
+                                label: Text(meetup.location),
+                                visualDensity: VisualDensity.compact,
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 4),
-                        ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          child: Container(
-                            color: Theme.of(context).scaffoldBackgroundColor.withAlpha(200),
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.location_pin, size: 12),
-                                const SizedBox(width: 4),
-                                Text(meetup.location, overflow: TextOverflow.ellipsis),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Spacer(),
-                ]),
+                      ),
+                    ]),
               ),
             ),
           ),
@@ -172,7 +155,7 @@ class HorizontalCategories extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 250,
+          height: 210,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
