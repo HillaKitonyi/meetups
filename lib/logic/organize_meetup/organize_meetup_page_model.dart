@@ -1,10 +1,19 @@
+import 'dart:io';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:meetups/domain/firestore/firestore_failures.dart';
+import 'package:meetups/domain/firestore/meetup.dart';
 import 'package:meetups/domain/firestore/meetup_category.dart';
+import 'package:meetups/domain/storage/storage_failures.dart';
+import 'package:meetups/infrastructure/fire_storage_service.dart';
+import 'package:meetups/infrastructure/fire_store_service.dart';
 import 'package:meetups/logic/organize_meetup/organize_meetup_page_state.dart';
+import 'package:uuid/uuid.dart';
 
 final organizeMeetupModelProvider =
     StateNotifierProvider<OrganizeMeetupPageModel, OrganizeMeetupPageState>((ref) {
@@ -13,6 +22,8 @@ final organizeMeetupModelProvider =
 
 class OrganizeMeetupPageModel extends StateNotifier<OrganizeMeetupPageState> {
   OrganizeMeetupPageModel(OrganizeMeetupPageState state) : super(state);
+  final FireStoreService fireStoreService = FireStoreService.instance;
+  final FireStorageService storageService = FireStorageService.instance;
   final _imagePicker = ImagePicker();
 
   void meetupTitleChanged(String titleStr) {
@@ -126,8 +137,55 @@ class OrganizeMeetupPageModel extends StateNotifier<OrganizeMeetupPageState> {
     state = state.copyWith(date: date ?? DateTime.now(), databaseFailureOrSuccess: null);
   }
 
-  void onSubmitClicked() {
-    // TODO: Implement onSubmitClicked
+  Future<void> onSubmitClicked(String uid) async {
+    late Option<Either<FirestoreFailure, StorageFailure>> possibleFailure;
+    String? downloadURL;
+    final String meetupID = const Uuid().v1();
+    final formIsValid = state.formKey.currentState?.validate() ?? false;
+
+    if (!formIsValid) {
+      state = state.copyWith(showErrors: true, databaseFailureOrSuccess: null);
+      return;
+    }
+
+    state = state.copyWith(loading: true, databaseFailureOrSuccess: null);
+    if (state.photoURL?.contains('assets') == false) {
+      possibleFailure = await storageService
+          .storeUserImage(File(state.photoURL!), StoragePath.meetups(meetupID))
+          .then((storageFailureOrString) => storageFailureOrString.fold(
+                (failure) => some(right(failure)),
+                (val) {
+                  downloadURL = val;
+                  return none();
+                },
+              ));
+    }
+
+    final dateAndTime = DateTime(
+      state.date.year,
+      state.date.month,
+      state.date.day,
+      state.timeOfDay.hour,
+      state.timeOfDay.minute,
+    );
+    final meetup = Meetup.initial().copyWith(
+      uid: meetupID,
+      creatorID: uid,
+      category: state.category,
+      title: state.title,
+      photoUrl: downloadURL,
+      description: state.description,
+      location: state.location,
+      dateAndTime: dateAndTime,
+    );
+    possibleFailure = await fireStoreService
+        .createMeetup(meetup)
+        .then((firestoreFailureOrUnit) => firestoreFailureOrUnit.fold(
+              (failure) => some(left(failure)),
+              (_) => none(),
+            ));
+    state = state.copyWith(loading: false, databaseFailureOrSuccess: possibleFailure);
+    onReset();
   }
 
   void onReset() => state = OrganizeMeetupPageState.initial();

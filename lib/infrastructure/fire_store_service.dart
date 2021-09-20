@@ -39,7 +39,7 @@ class FireStoreService {
   // C
   Future<Either<FirestoreFailure, Unit>> createMeetup(Meetup meetup) async {
     try {
-      await meetupDocument(meetup.uid).set(meetup);
+      await meetupDocument(meetup.uid!).set(meetup);
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.code == 'PERMISSION_DENIED') {

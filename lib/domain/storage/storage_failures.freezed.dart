@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$StorageFailureTearOff {
   const _$StorageFailureTearOff();
 
-  _ServerError serverError(String errMessage) {
+  _ServerError serverError({String? errMessage}) {
     return _ServerError(
-      errMessage,
+      errMessage: errMessage,
     );
   }
 }
@@ -29,21 +29,21 @@ const $StorageFailure = _$StorageFailureTearOff();
 
 /// @nodoc
 mixin _$StorageFailure {
-  String get errMessage => throw _privateConstructorUsedError;
+  String? get errMessage => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String errMessage) serverError,
+    required TResult Function(String? errMessage) serverError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String errMessage)? serverError,
+    TResult Function(String? errMessage)? serverError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String errMessage)? serverError,
+    TResult Function(String? errMessage)? serverError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,7 +74,7 @@ abstract class $StorageFailureCopyWith<$Res> {
   factory $StorageFailureCopyWith(
           StorageFailure value, $Res Function(StorageFailure) then) =
       _$StorageFailureCopyWithImpl<$Res>;
-  $Res call({String errMessage});
+  $Res call({String? errMessage});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class _$StorageFailureCopyWithImpl<$Res>
       errMessage: errMessage == freezed
           ? _value.errMessage
           : errMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -106,7 +106,7 @@ abstract class _$ServerErrorCopyWith<$Res>
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
   @override
-  $Res call({String errMessage});
+  $Res call({String? errMessage});
 }
 
 /// @nodoc
@@ -125,10 +125,10 @@ class __$ServerErrorCopyWithImpl<$Res>
     Object? errMessage = freezed,
   }) {
     return _then(_ServerError(
-      errMessage == freezed
+      errMessage: errMessage == freezed
           ? _value.errMessage
           : errMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -136,10 +136,10 @@ class __$ServerErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ServerError implements _ServerError {
-  const _$_ServerError(this.errMessage);
+  const _$_ServerError({this.errMessage});
 
   @override
-  final String errMessage;
+  final String? errMessage;
 
   @override
   String toString() {
@@ -167,7 +167,7 @@ class _$_ServerError implements _ServerError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String errMessage) serverError,
+    required TResult Function(String? errMessage) serverError,
   }) {
     return serverError(errMessage);
   }
@@ -175,7 +175,7 @@ class _$_ServerError implements _ServerError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String errMessage)? serverError,
+    TResult Function(String? errMessage)? serverError,
   }) {
     return serverError?.call(errMessage);
   }
@@ -183,7 +183,7 @@ class _$_ServerError implements _ServerError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String errMessage)? serverError,
+    TResult Function(String? errMessage)? serverError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -222,10 +222,10 @@ class _$_ServerError implements _ServerError {
 }
 
 abstract class _ServerError implements StorageFailure {
-  const factory _ServerError(String errMessage) = _$_ServerError;
+  const factory _ServerError({String? errMessage}) = _$_ServerError;
 
   @override
-  String get errMessage => throw _privateConstructorUsedError;
+  String? get errMessage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ServerErrorCopyWith<_ServerError> get copyWith =>

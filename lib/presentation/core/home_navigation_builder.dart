@@ -5,6 +5,8 @@ import 'package:meetups/domain/auth/app_user.dart';
 import 'package:meetups/infrastructure/fire_auth_service.dart';
 import 'package:meetups/logic/home/home_page_model.dart';
 import 'package:meetups/logic/navigation/nav_model.dart';
+import 'package:meetups/logic/organize_meetup/organize_meetup_page_model.dart';
+import 'package:meetups/presentation/sign_in/widgets.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import 'drawer_navigation_item.dart';
@@ -26,11 +28,16 @@ class HomeNavigationBuilder extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final navState = ref.watch(navModelProvider);
     final modelNotifier = ref.read(navModelProvider.notifier);
+    final organizeMeetupState = ref.watch(organizeMeetupModelProvider);
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: Text(navState.drawerItem.title),
+        bottom: PreferredSize(
+          child: Loader(loading: organizeMeetupState.loading),
+          preferredSize: const Size.fromHeight(4),
+        ),
       ),
       body: builder(context, navState.drawerItem),
       drawer: Builder(builder: (context) {

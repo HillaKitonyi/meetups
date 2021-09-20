@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meetups/domain/firestore/firestore_failures.dart';
 import 'package:meetups/domain/firestore/meetup.dart';
 import 'package:meetups/domain/firestore/meetup_category.dart';
+import 'package:meetups/domain/storage/storage_failures.dart';
 
 part 'organize_meetup_page_state.freezed.dart';
 
@@ -21,7 +22,7 @@ abstract class OrganizeMeetupPageState with _$OrganizeMeetupPageState {
     required String location,
     required TimeOfDay timeOfDay,
     required DateTime date,
-    required Either<FirestoreFailure, Unit>? databaseFailureOrSuccess,
+    required Option<Either<FirestoreFailure, StorageFailure>>? databaseFailureOrSuccess,
   }) = _OrganizeMeetupPageState;
 
   factory OrganizeMeetupPageState.initial() => OrganizeMeetupPageState(

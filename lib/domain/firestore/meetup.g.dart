@@ -8,7 +8,7 @@ part of 'meetup.dart';
 
 _$_Meetup _$$_MeetupFromJson(Map<String, dynamic> json) => _$_Meetup(
       category: _$enumDecode(_$MeetupCategoryEnumMap, json['category']),
-      uid: json['uid'] as String,
+      creatorID: json['creatorID'] as String?,
       title: json['title'] as String,
       photoUrl: json['photoUrl'] as String?,
       description: json['description'] as String,
@@ -18,7 +18,7 @@ _$_Meetup _$$_MeetupFromJson(Map<String, dynamic> json) => _$_Meetup(
 
 Map<String, dynamic> _$$_MeetupToJson(_$_Meetup instance) => <String, dynamic>{
       'category': _$MeetupCategoryEnumMap[instance.category],
-      'uid': instance.uid,
+      'creatorID': instance.creatorID,
       'title': instance.title,
       'photoUrl': instance.photoUrl,
       'description': instance.description,

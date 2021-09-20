@@ -29,7 +29,8 @@ class _$OrganizeMeetupPageStateTearOff {
       required String location,
       required TimeOfDay timeOfDay,
       required DateTime date,
-      required Either<FirestoreFailure, Unit>? databaseFailureOrSuccess}) {
+      required Option<Either<FirestoreFailure, StorageFailure>>?
+          databaseFailureOrSuccess}) {
     return _OrganizeMeetupPageState(
       formKey: formKey,
       loading: loading,
@@ -63,8 +64,8 @@ mixin _$OrganizeMeetupPageState {
   String get location => throw _privateConstructorUsedError;
   TimeOfDay get timeOfDay => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
-  Either<FirestoreFailure, Unit>? get databaseFailureOrSuccess =>
-      throw _privateConstructorUsedError;
+  Option<Either<FirestoreFailure, StorageFailure>>?
+      get databaseFailureOrSuccess => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrganizeMeetupPageStateCopyWith<OrganizeMeetupPageState> get copyWith =>
@@ -88,7 +89,8 @@ abstract class $OrganizeMeetupPageStateCopyWith<$Res> {
       String location,
       TimeOfDay timeOfDay,
       DateTime date,
-      Either<FirestoreFailure, Unit>? databaseFailureOrSuccess});
+      Option<Either<FirestoreFailure, StorageFailure>>?
+          databaseFailureOrSuccess});
 }
 
 /// @nodoc
@@ -163,7 +165,7 @@ class _$OrganizeMeetupPageStateCopyWithImpl<$Res>
       databaseFailureOrSuccess: databaseFailureOrSuccess == freezed
           ? _value.databaseFailureOrSuccess
           : databaseFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<FirestoreFailure, Unit>?,
+              as Option<Either<FirestoreFailure, StorageFailure>>?,
     ));
   }
 }
@@ -187,7 +189,8 @@ abstract class _$OrganizeMeetupPageStateCopyWith<$Res>
       String location,
       TimeOfDay timeOfDay,
       DateTime date,
-      Either<FirestoreFailure, Unit>? databaseFailureOrSuccess});
+      Option<Either<FirestoreFailure, StorageFailure>>?
+          databaseFailureOrSuccess});
 }
 
 /// @nodoc
@@ -265,7 +268,7 @@ class __$OrganizeMeetupPageStateCopyWithImpl<$Res>
       databaseFailureOrSuccess: databaseFailureOrSuccess == freezed
           ? _value.databaseFailureOrSuccess
           : databaseFailureOrSuccess // ignore: cast_nullable_to_non_nullable
-              as Either<FirestoreFailure, Unit>?,
+              as Option<Either<FirestoreFailure, StorageFailure>>?,
     ));
   }
 }
@@ -310,7 +313,8 @@ class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
   @override
   final DateTime date;
   @override
-  final Either<FirestoreFailure, Unit>? databaseFailureOrSuccess;
+  final Option<Either<FirestoreFailure, StorageFailure>>?
+      databaseFailureOrSuccess;
 
   @override
   String toString() {
@@ -383,19 +387,19 @@ class _$_OrganizeMeetupPageState implements _OrganizeMeetupPageState {
 
 abstract class _OrganizeMeetupPageState implements OrganizeMeetupPageState {
   const factory _OrganizeMeetupPageState(
-          {required GlobalKey<FormState> formKey,
-          required bool loading,
-          required bool showErrors,
-          required bool isEditing,
-          required String title,
-          required MeetupCategory category,
-          required String? photoURL,
-          required String description,
-          required String location,
-          required TimeOfDay timeOfDay,
-          required DateTime date,
-          required Either<FirestoreFailure, Unit>? databaseFailureOrSuccess}) =
-      _$_OrganizeMeetupPageState;
+      {required GlobalKey<FormState> formKey,
+      required bool loading,
+      required bool showErrors,
+      required bool isEditing,
+      required String title,
+      required MeetupCategory category,
+      required String? photoURL,
+      required String description,
+      required String location,
+      required TimeOfDay timeOfDay,
+      required DateTime date,
+      required Option<Either<FirestoreFailure, StorageFailure>>?
+          databaseFailureOrSuccess}) = _$_OrganizeMeetupPageState;
 
   @override
   GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
@@ -420,8 +424,8 @@ abstract class _OrganizeMeetupPageState implements OrganizeMeetupPageState {
   @override
   DateTime get date => throw _privateConstructorUsedError;
   @override
-  Either<FirestoreFailure, Unit>? get databaseFailureOrSuccess =>
-      throw _privateConstructorUsedError;
+  Option<Either<FirestoreFailure, StorageFailure>>?
+      get databaseFailureOrSuccess => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OrganizeMeetupPageStateCopyWith<_OrganizeMeetupPageState> get copyWith =>

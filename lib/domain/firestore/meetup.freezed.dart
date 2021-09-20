@@ -22,16 +22,18 @@ class _$MeetupTearOff {
   const _$MeetupTearOff();
 
   _Meetup call(
-      {required MeetupCategory category,
-      required String uid,
+      {@JsonKey(ignore: true) String? uid,
+      required MeetupCategory category,
+      required String? creatorID,
       required String title,
       required String? photoUrl,
       required String description,
       required String location,
       required DateTime dateAndTime}) {
     return _Meetup(
-      category: category,
       uid: uid,
+      category: category,
+      creatorID: creatorID,
       title: title,
       photoUrl: photoUrl,
       description: description,
@@ -50,8 +52,10 @@ const $Meetup = _$MeetupTearOff();
 
 /// @nodoc
 mixin _$Meetup {
+  @JsonKey(ignore: true)
+  String? get uid => throw _privateConstructorUsedError;
   MeetupCategory get category => throw _privateConstructorUsedError;
-  String get uid => throw _privateConstructorUsedError;
+  String? get creatorID => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -68,8 +72,9 @@ abstract class $MeetupCopyWith<$Res> {
   factory $MeetupCopyWith(Meetup value, $Res Function(Meetup) then) =
       _$MeetupCopyWithImpl<$Res>;
   $Res call(
-      {MeetupCategory category,
-      String uid,
+      {@JsonKey(ignore: true) String? uid,
+      MeetupCategory category,
+      String? creatorID,
       String title,
       String? photoUrl,
       String description,
@@ -87,8 +92,9 @@ class _$MeetupCopyWithImpl<$Res> implements $MeetupCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? category = freezed,
     Object? uid = freezed,
+    Object? category = freezed,
+    Object? creatorID = freezed,
     Object? title = freezed,
     Object? photoUrl = freezed,
     Object? description = freezed,
@@ -96,14 +102,18 @@ class _$MeetupCopyWithImpl<$Res> implements $MeetupCopyWith<$Res> {
     Object? dateAndTime = freezed,
   }) {
     return _then(_value.copyWith(
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MeetupCategory,
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
+      creatorID: creatorID == freezed
+          ? _value.creatorID
+          : creatorID // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -134,8 +144,9 @@ abstract class _$MeetupCopyWith<$Res> implements $MeetupCopyWith<$Res> {
       __$MeetupCopyWithImpl<$Res>;
   @override
   $Res call(
-      {MeetupCategory category,
-      String uid,
+      {@JsonKey(ignore: true) String? uid,
+      MeetupCategory category,
+      String? creatorID,
       String title,
       String? photoUrl,
       String description,
@@ -154,8 +165,9 @@ class __$MeetupCopyWithImpl<$Res> extends _$MeetupCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? category = freezed,
     Object? uid = freezed,
+    Object? category = freezed,
+    Object? creatorID = freezed,
     Object? title = freezed,
     Object? photoUrl = freezed,
     Object? description = freezed,
@@ -163,14 +175,18 @@ class __$MeetupCopyWithImpl<$Res> extends _$MeetupCopyWithImpl<$Res>
     Object? dateAndTime = freezed,
   }) {
     return _then(_Meetup(
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as MeetupCategory,
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String,
+      creatorID: creatorID == freezed
+          ? _value.creatorID
+          : creatorID // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -199,8 +215,9 @@ class __$MeetupCopyWithImpl<$Res> extends _$MeetupCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Meetup implements _Meetup {
   const _$_Meetup(
-      {required this.category,
-      required this.uid,
+      {@JsonKey(ignore: true) this.uid,
+      required this.category,
+      required this.creatorID,
       required this.title,
       required this.photoUrl,
       required this.description,
@@ -211,9 +228,12 @@ class _$_Meetup implements _Meetup {
       _$$_MeetupFromJson(json);
 
   @override
+  @JsonKey(ignore: true)
+  final String? uid;
+  @override
   final MeetupCategory category;
   @override
-  final String uid;
+  final String? creatorID;
   @override
   final String title;
   @override
@@ -227,18 +247,21 @@ class _$_Meetup implements _Meetup {
 
   @override
   String toString() {
-    return 'Meetup(category: $category, uid: $uid, title: $title, photoUrl: $photoUrl, description: $description, location: $location, dateAndTime: $dateAndTime)';
+    return 'Meetup(uid: $uid, category: $category, creatorID: $creatorID, title: $title, photoUrl: $photoUrl, description: $description, location: $location, dateAndTime: $dateAndTime)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Meetup &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.category, category) ||
                 const DeepCollectionEquality()
                     .equals(other.category, category)) &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.creatorID, creatorID) ||
+                const DeepCollectionEquality()
+                    .equals(other.creatorID, creatorID)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.photoUrl, photoUrl) ||
@@ -258,8 +281,9 @@ class _$_Meetup implements _Meetup {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(category) ^
       const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(category) ^
+      const DeepCollectionEquality().hash(creatorID) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(photoUrl) ^
       const DeepCollectionEquality().hash(description) ^
@@ -279,8 +303,9 @@ class _$_Meetup implements _Meetup {
 
 abstract class _Meetup implements Meetup {
   const factory _Meetup(
-      {required MeetupCategory category,
-      required String uid,
+      {@JsonKey(ignore: true) String? uid,
+      required MeetupCategory category,
+      required String? creatorID,
       required String title,
       required String? photoUrl,
       required String description,
@@ -290,9 +315,12 @@ abstract class _Meetup implements Meetup {
   factory _Meetup.fromJson(Map<String, dynamic> json) = _$_Meetup.fromJson;
 
   @override
+  @JsonKey(ignore: true)
+  String? get uid => throw _privateConstructorUsedError;
+  @override
   MeetupCategory get category => throw _privateConstructorUsedError;
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String? get creatorID => throw _privateConstructorUsedError;
   @override
   String get title => throw _privateConstructorUsedError;
   @override

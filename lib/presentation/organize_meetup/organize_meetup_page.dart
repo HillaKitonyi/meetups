@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:meetups/domain/firestore/meetup.dart';
 import 'package:meetups/domain/firestore/meetup_category.dart';
+import 'package:meetups/infrastructure/fire_auth_service.dart';
 import 'package:meetups/logic/navigation/nav_model.dart';
 import 'package:meetups/logic/organize_meetup/organize_meetup_page_model.dart';
 import 'package:meetups/logic/organize_meetup/organize_meetup_page_state.dart';
@@ -30,11 +31,20 @@ class OrganizeMeetupsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final modelNotifier = ref.read(organizeMeetupModelProvider.notifier);
+    final _formKey = ref.watch(organizeMeetupModelProvider.select((state) => state.formKey));
+    final showErrors = ref.watch(organizeMeetupModelProvider.select((state) => state.showErrors));
     final bool loading = ref.watch(organizeMeetupModelProvider.select((state) => state.loading));
     final DateTime date = ref.watch(organizeMeetupModelProvider.select((state) => state.date));
+    final TimeOfDay time = ref.watch(
+      organizeMeetupModelProvider.select((state) => state.timeOfDay),
+    );
     final String? photoURL = ref.watch(
       organizeMeetupModelProvider.select((state) => state.photoURL),
     );
+    final bool isEditing = ref.watch(
+      organizeMeetupModelProvider.select((state) => state.isEditing),
+    );
+    final uid = ref.read(appUserProvider).uid;
 
     return WillPopScope(
       onWillPop: () async {
@@ -45,7 +55,10 @@ class OrganizeMeetupsPage extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Form(
+          key: _formKey,
+          autovalidateMode: showErrors ? AutovalidateMode.always : AutovalidateMode.disabled,
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Center(
               child: Column(children: [
                 Loader(loading: loading),
@@ -78,6 +91,24 @@ class OrganizeMeetupsPage extends ConsumerWidget {
                   controller: TextEditingController()
                     ..value = TextEditingValue(text: DateFormat('d MMM, yyyy').format(date)),
                 ),
+                const SizedBox(height: 8),
+                TimeTextField(
+                  controller: TextEditingController()
+                    ..value = TextEditingValue(text: time.format(context)),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Text(
+                    isEditing ? 'SAVE' : 'CREATE',
+                    style: const TextStyle(letterSpacing: 1, fontSize: 18),
+                  ),
+                  onPressed: () => modelNotifier.onSubmitClicked(uid),
+                ),
+                const SizedBox(height: 18),
               ]),
             ),
           ),
@@ -100,7 +131,7 @@ class TitleTextField extends ConsumerWidget {
         hintText: title,
       ),
       onChanged: ref.read(organizeMeetupModelProvider.notifier).meetupTitleChanged,
-      validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
+      // validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
     );
   }
 }
@@ -188,7 +219,7 @@ class DescriptionTextField extends ConsumerWidget {
         hintText: description,
       ),
       onChanged: ref.read(organizeMeetupModelProvider.notifier).meetupDescriptionChanged,
-      validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
+      // validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
     );
   }
 }
@@ -208,7 +239,7 @@ class LocationTextField extends ConsumerWidget {
         hintText: location,
       ),
       onChanged: ref.read(organizeMeetupModelProvider.notifier).meetupLocationChanged,
-      validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
+      // validator: (_) {/* TODO: validateEmpty and validateMaxLength */},
     );
   }
 }
