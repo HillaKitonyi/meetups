@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meetups/logic/navigation/nav_model.dart';
 import 'package:meetups/presentation/core/drawer_navigation_item.dart';
+import 'package:meetups/presentation/core/fade_in_page_builder.dart';
 
 class MeetupsPage extends ConsumerWidget {
   const MeetupsPage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class MeetupsPage extends ConsumerWidget {
         ref.read(navModelProvider.notifier).onNavigate(context, DrawerItem.home);
         return false;
       },
-      child: Container(),
+      child: FadeInPagebuilder(child: Container()),
     );
   }
 }

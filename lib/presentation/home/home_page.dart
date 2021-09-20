@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meetups/logic/home/home_page_model.dart';
+import 'package:meetups/presentation/core/fade_in_page_builder.dart';
 
 import 'widgets.dart';
 
@@ -14,20 +15,22 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pageState = ref.watch(homePageModelProvider);
     return Scaffold(
-      body: ListView(children: const [
-        HorizontalFeaturedMeetups(),
-        SizedBox(height: 16),
-        HorizontalCategories(),
-        SizedBox(height: 16),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            _homePageText,
-            style: TextStyle(fontSize: 18),
-            textAlign: TextAlign.center,
+      body: FadeInPagebuilder(
+        child: ListView(children: const [
+          HorizontalFeaturedMeetups(),
+          SizedBox(height: 16),
+          HorizontalCategories(),
+          SizedBox(height: 16),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              _homePageText,
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }
