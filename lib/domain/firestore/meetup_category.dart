@@ -1,6 +1,7 @@
 import 'package:enum_to_string/enum_to_string.dart';
 
 enum MeetupCategory {
+  general,
   academic,
   beverage,
   business,
@@ -11,7 +12,6 @@ enum MeetupCategory {
   online,
   sports,
   travel,
-  general,
 }
 
 extension on String {

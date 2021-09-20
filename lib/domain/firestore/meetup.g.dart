@@ -53,6 +53,7 @@ K _$enumDecode<K, V>(
 }
 
 const _$MeetupCategoryEnumMap = {
+  MeetupCategory.general: 'general',
   MeetupCategory.academic: 'academic',
   MeetupCategory.beverage: 'beverage',
   MeetupCategory.business: 'business',
@@ -63,5 +64,4 @@ const _$MeetupCategoryEnumMap = {
   MeetupCategory.online: 'online',
   MeetupCategory.sports: 'sports',
   MeetupCategory.travel: 'travel',
-  MeetupCategory.general: 'general',
 };

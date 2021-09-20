@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomePageStateTearOff {
   const _$HomePageStateTearOff();
 
-  _HomePageState call() {
-    return const _HomePageState();
+  _HomePageState call({required List<Meetup> featuredMeetups}) {
+    return _HomePageState(
+      featuredMeetups: featuredMeetups,
+    );
   }
 }
 
@@ -26,13 +28,20 @@ class _$HomePageStateTearOff {
 const $HomePageState = _$HomePageStateTearOff();
 
 /// @nodoc
-mixin _$HomePageState {}
+mixin _$HomePageState {
+  List<Meetup> get featuredMeetups => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomePageStateCopyWith<HomePageState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $HomePageStateCopyWith<$Res> {
   factory $HomePageStateCopyWith(
           HomePageState value, $Res Function(HomePageState) then) =
       _$HomePageStateCopyWithImpl<$Res>;
+  $Res call({List<Meetup> featuredMeetups});
 }
 
 /// @nodoc
@@ -43,13 +52,28 @@ class _$HomePageStateCopyWithImpl<$Res>
   final HomePageState _value;
   // ignore: unused_field
   final $Res Function(HomePageState) _then;
+
+  @override
+  $Res call({
+    Object? featuredMeetups = freezed,
+  }) {
+    return _then(_value.copyWith(
+      featuredMeetups: featuredMeetups == freezed
+          ? _value.featuredMeetups
+          : featuredMeetups // ignore: cast_nullable_to_non_nullable
+              as List<Meetup>,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$HomePageStateCopyWith<$Res> {
+abstract class _$HomePageStateCopyWith<$Res>
+    implements $HomePageStateCopyWith<$Res> {
   factory _$HomePageStateCopyWith(
           _HomePageState value, $Res Function(_HomePageState) then) =
       __$HomePageStateCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Meetup> featuredMeetups});
 }
 
 /// @nodoc
@@ -62,27 +86,61 @@ class __$HomePageStateCopyWithImpl<$Res>
 
   @override
   _HomePageState get _value => super._value as _HomePageState;
+
+  @override
+  $Res call({
+    Object? featuredMeetups = freezed,
+  }) {
+    return _then(_HomePageState(
+      featuredMeetups: featuredMeetups == freezed
+          ? _value.featuredMeetups
+          : featuredMeetups // ignore: cast_nullable_to_non_nullable
+              as List<Meetup>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_HomePageState implements _HomePageState {
-  const _$_HomePageState();
+  const _$_HomePageState({required this.featuredMeetups});
+
+  @override
+  final List<Meetup> featuredMeetups;
 
   @override
   String toString() {
-    return 'HomePageState()';
+    return 'HomePageState(featuredMeetups: $featuredMeetups)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _HomePageState);
+    return identical(this, other) ||
+        (other is _HomePageState &&
+            (identical(other.featuredMeetups, featuredMeetups) ||
+                const DeepCollectionEquality()
+                    .equals(other.featuredMeetups, featuredMeetups)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(featuredMeetups);
+
+  @JsonKey(ignore: true)
+  @override
+  _$HomePageStateCopyWith<_HomePageState> get copyWith =>
+      __$HomePageStateCopyWithImpl<_HomePageState>(this, _$identity);
 }
 
 abstract class _HomePageState implements HomePageState {
-  const factory _HomePageState() = _$_HomePageState;
+  const factory _HomePageState({required List<Meetup> featuredMeetups}) =
+      _$_HomePageState;
+
+  @override
+  List<Meetup> get featuredMeetups => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$HomePageStateCopyWith<_HomePageState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

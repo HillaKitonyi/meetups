@@ -1,12 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meetups/domain/firestore/firestore_failures.dart';
 import 'package:meetups/domain/firestore/meetup.dart';
+import 'package:meetups/domain/firestore/meetup_category.dart';
 
-final meetupsListProvider = StreamProvider.autoDispose<List<Meetup>>((_) {
-  return FireStoreService.instance.watchMeetups();
-}, name: 'meetupsListProvider');
+final meetupsListProvider = StreamProvider.family.autoDispose<List<Meetup>, MeetupCategory?>(
+  (_, categoryFilter) {
+    if (categoryFilter != null) {
+      return FireStoreService.instance.watchMeetups(categoryFilter: categoryFilter);
+    } else {
+      return FireStoreService.instance.watchMeetups(categoryFilter: null);
+    }
+  },
+  name: 'meetupsListProvider',
+);
 
 final meetupProvider = StreamProvider.family.autoDispose<Meetup, String>((_, meetupID) {
   return FireStoreService.instance.watchMeetup(meetupID);
@@ -21,7 +30,9 @@ class FireStoreService {
   CollectionReference<Meetup> meetupsCollection() {
     return _firestore.collection('meetups').withConverter(
           fromFirestore: (snapshot, options) {
-            return snapshot.exists ? Meetup.fromJson(snapshot.data()!) : Meetup.initial();
+            return snapshot.exists
+                ? Meetup.fromJson(snapshot.data()!).copyWith(uid: snapshot.id)
+                : Meetup.initial();
           },
           toFirestore: (meetup, options) => meetup.toJson(),
         );
@@ -30,7 +41,9 @@ class FireStoreService {
   DocumentReference<Meetup> meetupDocument(String meetupID) {
     return meetupsCollection().doc(meetupID).withConverter(
           fromFirestore: (snapshot, options) {
-            return snapshot.exists ? Meetup.fromJson(snapshot.data()!) : Meetup.initial();
+            return snapshot.exists
+                ? Meetup.fromJson(snapshot.data()!).copyWith(uid: snapshot.id)
+                : Meetup.initial();
           },
           toFirestore: (meetup, options) => meetup.toJson(),
         );
@@ -51,10 +64,18 @@ class FireStoreService {
   }
 
   // R
-  Stream<List<Meetup>> watchMeetups() {
-    return meetupsCollection()
-        .snapshots()
-        .map((qSnapshot) => qSnapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
+  Stream<List<Meetup>> watchMeetups({MeetupCategory? categoryFilter}) {
+    if (categoryFilter == null) {
+      return meetupsCollection()
+          .snapshots()
+          .map((qSnapshot) => qSnapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
+    } else {
+      final String enumString = EnumToString.convertToString(categoryFilter);
+      return meetupsCollection()
+          .where('category', isEqualTo: enumString)
+          .snapshots()
+          .map((qSnapshot) => qSnapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
+    }
   }
 
   Stream<Meetup> watchMeetup(String meetupID) {

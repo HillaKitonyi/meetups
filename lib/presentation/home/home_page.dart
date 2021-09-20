@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meetups/logic/home/home_page_model.dart';
 
 import 'widgets.dart';
 
@@ -11,6 +12,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final pageState = ref.watch(homePageModelProvider);
     return Scaffold(
       body: ListView(children: const [
         HorizontalFeaturedMeetups(),
