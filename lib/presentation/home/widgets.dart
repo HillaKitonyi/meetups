@@ -9,6 +9,8 @@ import 'package:meetups/presentation/core/drawer_navigation_item.dart';
 import 'package:meetups/presentation/meetup/meetup_page.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+final meetupCategoryProvider = StateProvider<MeetupCategory?>((_) => null);
+
 class HorizontalFeaturedMeetups extends ConsumerWidget {
   const HorizontalFeaturedMeetups({Key? key}) : super(key: key);
 
@@ -201,6 +203,7 @@ class _CategoryItem extends ConsumerWidget {
         ),
         child: GestureDetector(
           onTap: () {
+            ref.read(meetupCategoryProvider).state = category;
             ref.read(navModelProvider.notifier).onNavigate(context, DrawerItem.viewMeetups);
           },
           child: ClipRRect(

@@ -5,17 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meetups/domain/firestore/firestore_failures.dart';
 import 'package:meetups/domain/firestore/meetup.dart';
 import 'package:meetups/domain/firestore/meetup_category.dart';
+import 'package:meetups/presentation/home/widgets.dart';
 
-final meetupsListProvider = StreamProvider.family.autoDispose<List<Meetup>, MeetupCategory?>(
-  (_, categoryFilter) {
-    if (categoryFilter != null) {
-      return FireStoreService.instance.watchMeetups(categoryFilter: categoryFilter);
-    } else {
-      return FireStoreService.instance.watchMeetups(categoryFilter: null);
-    }
-  },
-  name: 'meetupsListProvider',
-);
+final meetupsListProvider = StreamProvider.autoDispose<List<Meetup>>((ref) {
+  final categoryPicked = ref.watch(meetupCategoryProvider).state;
+  return FireStoreService.instance.watchMeetups(categoryFilter: categoryPicked);
+}, name: 'meetupsListProvider');
 
 final meetupProvider = StreamProvider.family.autoDispose<Meetup, String>((_, meetupID) {
   return FireStoreService.instance.watchMeetup(meetupID);

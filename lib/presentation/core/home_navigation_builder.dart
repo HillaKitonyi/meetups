@@ -6,6 +6,7 @@ import 'package:meetups/infrastructure/fire_auth_service.dart';
 import 'package:meetups/logic/home/home_page_model.dart';
 import 'package:meetups/logic/navigation/nav_model.dart';
 import 'package:meetups/logic/organize_meetup/organize_meetup_page_model.dart';
+import 'package:meetups/presentation/home/widgets.dart';
 import 'package:meetups/presentation/sign_in/widgets.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -83,7 +84,10 @@ class _AppDrawer extends ConsumerWidget {
               leading: const Icon(Icons.supervisor_account_rounded),
               title: const Text('View Meetups'),
               trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => onSelectDrawerItem(DrawerItem.viewMeetups),
+              onTap: () {
+                ref.read(meetupCategoryProvider).state = null;
+                onSelectDrawerItem(DrawerItem.viewMeetups);
+              },
             ),
             ListTile(
               selected: selectedDrawerItem == DrawerItem.organizeMeetups,
